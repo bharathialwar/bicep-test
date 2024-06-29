@@ -1,19 +1,29 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+# Azure DevOps pipeline YAML for Bicep deployment
 
 trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'windows-latest'
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+variables:
+  # Replace with your Azure service connection name
+  azureSubscription: 'ABR_Sub_Connector'
+  location: 'eastus'  # Replace with your desired resource location
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+stages:
+- stage: Deploy
+  jobs:
+  - job: BicepDeployment
+    steps:
+    - task: AzureResourceGroupDeployment@2
+      inputs:
+        azureSubscription: $(azureSubscription)
+        resourceGroupName: '$(ResourceGroup)-$(Build.BuildNumber)'  # Dynamic resource group name
+        location: $(location)
+        deploymentMode: Incremental
+        templateFilePath: 'main.bicep'
+        # Optional: Path to Bicep parameter file (if used)
+        # parameterFilePath: 'main.bicepparam'
+        # Additional options (refer to task documentation for details)
+        # ...
