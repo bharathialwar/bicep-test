@@ -24,7 +24,7 @@ stages:
     - task: AzureResourceManagerTemplateDeployment@3
       inputs:
         deploymentScope: 'Resource Group'
-        azureSubscription: '$(azureSubscription)'
+        azureSubscription: '${{ parameters.azureServiceConnection}}'
         resourceGroupName: '$(ResourceGroup)'
         location: $(location)
         csmFile: '$(templateFile)'
