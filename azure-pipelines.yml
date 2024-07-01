@@ -4,7 +4,7 @@ trigger:
 - main
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'ubuntu-latest'
 
 variables:
   # Replace with your Azure service connection name
@@ -12,20 +12,20 @@ variables:
   location: 'eastus'  # Replace with your desired resource location
   resourceGroup: 'test_rg'
   templateFile: './main.bicep'
+  csmParametersFile: './azuredeploy.bicep'
 
 stages:
 - stage: Deploy
   jobs:
   - job: BicepDeployment
     steps:
-    - task: AzureResourceGroupDeployment@2
+    - task: AzureResourceManagerTemplateDeployment@3
       inputs:
+        deploymentScope: 'Resource Group'
         azureSubscription: '$(azureSubscription)'
         resourceGroupName: '$(ResourceGroup)'
         location: $(location)
-        deploymentMode: Incremental
         csmFile: '$(templateFile)'
-        # Optional: Path to Bicep parameter file (if used)
-        # parameterFilePath: 'main.bicepparam'
-        # Additional options (refer to task documentation for details)
-        # ...
+        csmParametersFile: '$(csmParametersFile'
+        deploymentMode: Incremental
+        deploymentName: 'DeployPipelineTemplate'
