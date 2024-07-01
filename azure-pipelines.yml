@@ -19,7 +19,7 @@ stages:
     steps:
     - task: AzureResourceGroupDeployment@2
       inputs:
-        azureSubscription: $(azureSubscription)
+        azureSubscription: '$(azureSubscription)'
         resourceGroupName: '$(ResourceGroup)'
         location: $(location)
         deploymentMode: Incremental
