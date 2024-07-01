@@ -23,7 +23,7 @@ stages:
         resourceGroupName: '$(ResourceGroup)'
         location: $(location)
         deploymentMode: Incremental
-        template: 'bicep-test\main.bicep'
+        templateFile: '\bicep-test\main.bicep'
         # Optional: Path to Bicep parameter file (if used)
         # parameterFilePath: 'main.bicepparam'
         # Additional options (refer to task documentation for details)
