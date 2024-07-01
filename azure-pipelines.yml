@@ -10,7 +10,7 @@ variables:
   # Replace with your Azure service connection name
   azureSubscription: 'ABR_Sub_Connector'
   location: 'eastus'  # Replace with your desired resource location
-  resourceGroupName: 'test_rg'
+  resourceGroup: 'test_rg'
 
 stages:
 - stage: Deploy
