@@ -5,11 +5,13 @@ trigger:
 
 pool:
   vmImage: 'ubuntu-latest'
+parameters:
+  - name: azureserviceconnection
+    type: string
+    default: 'ABR_Sub_Connector'
 
 variables:
-  # Replace with your Azure service connection name
-  azureSubscription: 'ABR_Sub_Connector'
-  location: 'eastus'  # Replace with your desired resource location
+  location: 'eastus'  
   resourceGroup: 'test_rg'
   templateFile: './main.bicep'
   csmParametersFile: './azuredeploy.bicep'
