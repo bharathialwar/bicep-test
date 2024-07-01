@@ -11,6 +11,7 @@ variables:
   azureSubscription: 'ABR_Sub_Connector'
   location: 'eastus'  # Replace with your desired resource location
   resourceGroup: 'test_rg'
+  templateFile: './main.bicep'
 
 stages:
 - stage: Deploy
@@ -23,7 +24,7 @@ stages:
         resourceGroupName: '$(ResourceGroup)'
         location: $(location)
         deploymentMode: Incremental
-        templateFile: '\bicep-test\main.bicep'
+        templateFile: '$(templateFile)'
         # Optional: Path to Bicep parameter file (if used)
         # parameterFilePath: 'main.bicepparam'
         # Additional options (refer to task documentation for details)
