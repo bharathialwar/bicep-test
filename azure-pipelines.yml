@@ -12,13 +12,13 @@ stages:
   - job: BicepDeployment
     steps:
     - task: AzureResourceManagerTemplateDeployment@3
-      displayName: 'Deploy bicep'
       inputs:
         deploymentScope: 'Subscription'
-        azureResourceManagerConnection: 'ABR_Sub_Connector'
-        subscriptionId: 'edb04ea6-2dc0-49f0-ba08-d4ff5e2e2fe4'
-        location: 'East US'
+        azureResourceManagerConnection: 'abr_azure_connection'
+        subscriptionId: 'a8ed239b-e5dd-4348-8d82-1d25897ddc12'
+        location: 'South India'
         templateLocation: 'URL of the file'
         csmFileLink: 'https://github.com/bharathialwar/bicep-test/blob/main/main.bicep'
         csmParametersFileLink: 'https://github.com/bharathialwar/bicep-test/blob/main/azuredeploy.bicep'
         deploymentMode: 'Validation'
+        deploymentName: 'Bicep Deploy'
