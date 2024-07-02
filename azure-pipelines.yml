@@ -19,6 +19,6 @@ stages:
         location: 'South India'
         templateLocation: 'URL of the file'
         csmFileLink: 'https://github.com/bharathialwar/bicep-test/blob/main/main.bicep'
-        csmParametersFileLink: 'https://github.com/bharathialwar/bicep-test/blob/main/azuredeploy.bicep'
+        csmParametersFileLink: 'https://github.com/bharathialwar/bicep-test/blob/main/parameters.json'
         deploymentMode: 'Validation'
         deploymentName: 'Bicep Deploy'
