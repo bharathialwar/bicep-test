@@ -5,16 +5,6 @@ trigger:
 
 pool:
   vmImage: 'ubuntu-latest'
-parameters:
-  - name: azureserviceconnection
-    type: string
-    default: 'ABR_Sub_Connector'
-
-variables:
-  location: 'eastus'  
-  resourceGroup: 'test_rg'
-  templateFile: './main.bicep'
-  csmParametersFile: './azuredeploy.bicep'
 
 stages:
 - stage: Deploy
@@ -22,12 +12,13 @@ stages:
   - job: BicepDeployment
     steps:
     - task: AzureResourceManagerTemplateDeployment@3
+      displayName: 'Deploy bicep'
       inputs:
-        deploymentScope: 'Resource Group'
-        azureSubscription: '${{ parameters.azureServiceConnection}}'
-        resourceGroupName: '$(ResourceGroup)'
-        location: $(location)
-        csmFile: '$(templateFile)'
-        csmParametersFile: '$(csmParametersFile'
-        deploymentMode: Incremental
-        deploymentName: 'DeployPipelineTemplate'
+        deploymentScope: 'Subscription'
+        azureResourceManagerConnection: 'ABR_Sub_Connector'
+        subscriptionId: 'edb04ea6-2dc0-49f0-ba08-d4ff5e2e2fe4'
+        location: 'East US'
+        templateLocation: 'URL of the file'
+        csmFileLink: 'https://github.com/bharathialwar/bicep-test/blob/main/main.bicep'
+        csmParametersFileLink: 'https://github.com/bharathialwar/bicep-test/blob/main/azuredeploy.bicep'
+        deploymentMode: 'Validation'
